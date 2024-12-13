@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const AddNewStudent = () => {
+const EditStudentRecords = () => {
   return (
     <div className="max-w-4xl mx-auto mt-10 p-6 rounded-lg shadow-lg border-t-4 border-purple-600 bg-white">
       <h2 className="text-2xl font-bold text-purple-600 text-center mb-6">
-        Add New Student
+        Edit Student Record
       </h2>
       <form className="space-y-4">
         <div className="flex flex-col">
@@ -69,4 +69,4 @@ const AddNewStudent = () => {
   );
 };
 
-export default AddNewStudent;
+export default EditStudentRecords;

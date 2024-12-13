@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const ViewStudents = () => {
   return (
@@ -22,9 +23,11 @@ const ViewStudents = () => {
         <span className="block font-bold text-gray-700">Phone:</span>
         <span className="text-gray-800 text-lg font-semibold">9878767521</span>
       </div>
-      <button className="w-full mt-5 sm:w-auto px-4 py-2 bg-red-500 text-white rounded-lg font-bold hover:bg-red-600 transition">
-        Back
-      </button>
+      <Link to={"/"}>
+        <button className="w-full mt-5 sm:w-auto px-4 py-2 bg-red-500 text-white rounded-lg font-bold hover:bg-red-600 transition">
+          Back
+        </button>
+      </Link>
     </div>
   );
 };

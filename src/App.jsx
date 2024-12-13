@@ -1,9 +1,14 @@
-import React from 'react'
+import React from 'react';
+import { BrowserRouter, Route, Router, Routes } from 'react-router-dom';
+import StudentRecords from './components/StudentRecords'
+import AddNewStudent from './components/AddNewStudent'
+import ViewStudents from './components/ViewStudents'
+
 
 const App = () => {
   return (
-    <div>
-      <h1>hello</h1>
+    <div className='h-screen w-full'>
+      
     </div>
   )
 }

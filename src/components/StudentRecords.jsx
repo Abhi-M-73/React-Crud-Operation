@@ -7,10 +7,27 @@ const StudentRecords = () => {
 
   const navigate = useNavigate();
 
-  const viewDetails = (id) => {
-    navigate(`/students/view/${id}`);
+  const viewDetails = (studentId) => {
+    navigate(`/students/view/${studentId}`);
   }
 
+  const editDetail = (studentId) => {
+    navigate(`/students/edit/${studentId}`);
+  }
+
+  const deleteDetails = async (studentId) => {
+    if (window.confirm("Are you sure you want to delete this record?")) {
+      try {
+        await axios.delete(`http://localhost:5000/students/${studentId}`);
+        alert("Student Deleted Successfully!");
+        window.location.reload(); // Reloads the page to reflect changes
+      } catch (error) {
+        console.error("Error deleting student record:", error);
+        alert("Failed to delete the record. Please try again.");
+      }
+    }
+  };
+  
   useEffect(() => {
     const fetchStudents = async () => {
       try {
@@ -29,7 +46,7 @@ const StudentRecords = () => {
     <div className="max-w-4xl mx-auto mt-10 p-6 rounded-lg shadow-lg border-t-4 border-purple-600 bg-white">
       <div className="flex flex-col sm:flex-row sm:justify-between items-center mb-6">
         <h2 className="text-3xl font-bold text-gray-800">Student Records</h2>
-        <Link to={"/add-student"}>
+        <Link to={"/students/add-student"}>
           <button className="px-4 py-2 mt-4 sm:mt-0 bg-purple-600 text-white rounded-lg font-bold hover:bg-purple-700">
             Add New Student
           </button>
@@ -61,12 +78,10 @@ const StudentRecords = () => {
                         <button onClick={() => viewDetails(elem.id)} className="px-3 py-1 mb-2 sm:mb-0 bg-blue-500 text-white rounded-lg font-bold hover:bg-blue-600">
                           View
                         </button>
-                        <Link to={"/edit-students"}>
-                          <button className="px-3 py-1 mb-2 sm:mb-0 bg-purple-600 text-white rounded-lg font-bold hover:bg-purple-700">
-                            Edit
-                          </button>
-                        </Link>
-                        <button className="px-3 py-1 bg-red-500 text-white rounded-lg font-bold hover:bg-red-600">
+                        <button onClick={() => editDetail(elem.id)} className="px-3 py-1 mb-2 sm:mb-0 bg-purple-600 text-white rounded-lg font-bold hover:bg-purple-700">
+                          Edit
+                        </button>
+                        <button onClick={() => deleteDetails(elem.id)} className="px-3 py-1 bg-red-500 text-white rounded-lg font-bold hover:bg-red-600">
                           Delete
                         </button>
                       </div>

@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom";
 
 const ViewStudents = () => {
   // Extract 'id' from the URL parameters
-  const { id } = useParams();
+  const { studentId } = useParams();
 
   const [student, setStudent] = useState([]);
 
@@ -12,16 +12,15 @@ const ViewStudents = () => {
     const fetchStudent = async () => {
       try {
         // Make an API call to get student details by ID
-        const response = await axios.get(`http://localhost:5000/students/${id}`);
+        const response = await axios.get(`http://localhost:5000/students/${studentId}`);
         setStudent(response.data);
-        console.log(response.data)
       } catch (error) {
         console.error("Error fetching student data:", error);
       }
     };
 
     fetchStudent();
-  }, [id]);
+  }, [studentId]);
 
   if (!student) {
     return (
@@ -42,15 +41,15 @@ const ViewStudents = () => {
       </div>
       <div className="flex items-center gap-3">
         <span className="block font-bold text-gray-700">Name:</span>
-        <span className="text-gray-800 text-lg font-semibold">{student.name}</span>
+        <span className="text-blue-600 text-lg font-semibold">{student.name}</span>
       </div>
       <div className="flex items-center gap-3">
         <span className="block font-bold text-gray-700">Place:</span>
-        <span className="text-gray-800 text-lg font-semibold">{student.place}</span>
+        <span className="text-blue-600 text-lg font-semibold">{student.place}</span>
       </div>
       <div className="flex items-center gap-3">
         <span className="block font-bold text-gray-700">Phone:</span>
-        <span className="text-gray-800 text-lg font-semibold">{student.phone}</span>
+        <span className="text-blue-600 text-lg font-semibold">{student.phone}</span>
       </div>
       <Link to={"/"}>
         <button className="w-full mt-5 sm:w-auto px-4 py-2 bg-red-500 text-white rounded-lg font-bold hover:bg-red-600 transition">
